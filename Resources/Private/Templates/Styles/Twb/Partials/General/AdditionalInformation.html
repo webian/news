@@ -15,8 +15,10 @@
 
 	<!-- category -->
 	<f:if condition="{newsItem.firstCategory}">
-		| <span class="glyphicon glyphicon-tags"> </span>&nbsp;
-		<span class="label label-info">{newsItem.firstCategory.title}</span>
+		<span class="news-categories">
+			<span class="glyphicon glyphicon-tags"></span>
+			<f:for each="{newsItem.categories}" as="category"><span class="label label-info" data-category="{category.uid}">{category.title}</span></f:for>
+		</span>
 	</f:if>
 
 	<f:if condition="{newsItem.tags}">
