@@ -145,7 +145,7 @@ plugin.tx_news {
 					maxHeight = 100
 				}
 
-				dummyImage = typo3conf/ext/news/Resources/Public/Images/dummy-preview-image.png
+				dummyImage = typo3conf/ext/news/Resources/Public/Images/dummy-preview-image.jpg
 			}
 
 			# Paginate configuration.
