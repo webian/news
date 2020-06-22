@@ -82,6 +82,37 @@
 				<f:render section="inner-content" arguments="{_all}" />
 			</f:else>
 		</f:if>
+		<n:simplePrevNext pidList="{newsItem.pid}" news="{newsItem}" as="paginated" sortField="datetime">
+			<f:if condition="{paginated}">
+				<ul class="browse-pages frame frame-type-menu frame-space-before-none frame-space-after-none frame-utility">
+					<li class="previous">
+						<f:if condition="{paginated.prev}">
+							<n:link newsItem="{paginated.prev}" settings="{settings}" class="browse-pages-link browse-pages-link-prev">
+								<f:if condition="{paginated.prev.media.0}">
+									<f:media file="{paginated.prev.media.0}" width="80" class="browse-pages-link-img" />
+								</f:if>
+								<p>{paginated.prev.title}</p>
+							</n:link>
+						</f:if>
+					</li>
+					<li class="up">
+						<f:link.page class="browse-pages-link browse-pages-link-up" pageUid="43">
+							<p><f:translate key="back-link" /></p>
+						</f:link.page>
+					</li>
+					<li class="next">
+						<f:if condition="{paginated.next}">
+							<n:link newsItem="{paginated.next}" settings="{settings}" class="browse-pages-link browse-pages-link-next" >
+								<p>{paginated.next.title}</p>
+								<f:if condition="{paginated.next.media.0}">
+									<f:media file="{paginated.next.media.0}" width="80" class="browse-pages-link-img" />
+								</f:if>
+							</n:link>
+						</f:if>
+					</li>
+				</ul>
+			</f:if>
+		</n:simplePrevNext>
 	</f:if>
 </f:section>
 
