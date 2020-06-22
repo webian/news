@@ -201,7 +201,7 @@ class SimplePrevNextViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstrac
                 ->select('*')
                 ->from('tx_news_domain_model_news')
                 ->where(
-                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)),
+                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($GLOBALS['TSFE']->sys_language_uid, \PDO::PARAM_INT)),
                     $queryBuilder->expr()->in('pid', $queryBuilder->createNamedParameter(explode(',', $pidList), Connection::PARAM_INT_ARRAY))
                 )
                 ->andWhere(...$extraWhere)
