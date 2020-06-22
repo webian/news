@@ -1,5 +1,6 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
 	  xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+	  xmlns:bk2k="http://typo3.org/ns/BK2K/BootstrapPackage/ViewHelpers"
 	  data-namespace-typo3-fluid="true">
 
 <f:layout name="Detail" />
@@ -62,8 +63,10 @@
 					</div>
 					<div class="col-md-4">
 						<f:for each="{newsItem.mediaNonPreviews}" as="mediaElement">
-							<div class="thumbnail">
-								<f:media file="{mediaElement}" class="img-responsive" />
+							<div class="thumb-wrap">
+								<a href="{f:uri.image(image: mediaElement, maxHeight: '1200', maxWidth: '1200')}" title="<f:if condition='{mediaElement.title}'>{mediaElement.title}</f:if>" data-lightbox-caption="{mediaElement.description}" class="lightbox" data-lightbox-width="{bk2k:lastImageInfo(property: 'width')}" data-lightbox-height="{bk2k:lastImageInfo(property: 'height')}" data-gallery="news-detail">
+									<f:media file="{mediaElement}" width="720" class="img-responsive" />
+								</a>
 								<f:if condition="{mediaElement.description}">
 									<div class="caption">
 										{mediaElement.description}
