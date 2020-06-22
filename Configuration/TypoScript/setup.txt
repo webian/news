@@ -151,7 +151,7 @@ plugin.tx_news {
 			# Paginate configuration.
 			paginate {
 				itemsPerPage = 10
-				insertAbove = 1
+				insertAbove = 0
 				insertBelow = 1
 				templatePath =
 				prevNextHeaderTags = 1
