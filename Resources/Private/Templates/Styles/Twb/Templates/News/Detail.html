@@ -236,5 +236,16 @@
 			</ul>
 		</div>
 	</f:if>
+	<f:if condition="{newsItem.link}">
+		<!-- Link to social post -->
+		<f:link.typolink parameter="{newsItem.link}" title="{f:translate(key:'LLL:EXT:bootstrap_package/Resources/Private/Language/locallang.xlf:seeOriginalPost')}" class="btn btn-primary" target="_blank">
+			<f:variable name="linkIcon">glyphicon-new-window</f:variable>
+			<f:if condition="{newsItem.firstCategory.title} == 'Facebook' "><f:variable name="linkIcon">icon-facebook-square</f:variable></f:if>
+			<f:if condition="{newsItem.firstCategory.title} == 'Instagram' "><f:variable name="linkIcon">icon-instagram</f:variable></f:if>
+			<f:if condition="{newsItem.firstCategory.title} == 'Youtube' "><f:variable name="linkIcon">icon-youtube-play</f:variable></f:if>
+			<span class="glyphicon {linkIcon}"></span>
+			{f:translate(key:'LLL:EXT:bootstrap_package/Resources/Private/Language/locallang.xlf:seeOriginalPost')}
+		</f:link.typolink>
+	</f:if>
 </f:section>
 </html>
