@@ -64,9 +64,16 @@
 					<div class="col-md-4">
 						<f:for each="{newsItem.mediaNonPreviews}" as="mediaElement">
 							<div class="thumb-wrap">
-								<a href="{f:uri.image(image: mediaElement, maxHeight: '1200', maxWidth: '1200')}" title="<f:if condition='{mediaElement.title}'>{mediaElement.title}</f:if>" data-lightbox-caption="{mediaElement.description}" class="lightbox" data-lightbox-width="{bk2k:lastImageInfo(property: 'width')}" data-lightbox-height="{bk2k:lastImageInfo(property: 'height')}" data-gallery="news-detail">
-									<f:media file="{mediaElement}" width="720" class="img-responsive" />
-								</a>
+								<f:if condition="{mediaElement.originalResource.type} == 4">
+									<f:then>
+										<f:media class="embed-responsive-item video-js vjs-default-skin" file="{mediaElement}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" />
+									</f:then>
+									<f:else>
+										<a href="{f:uri.image(image: mediaElement, maxHeight: '1200', maxWidth: '1200')}" title="<f:if condition='{mediaElement.title}'>{mediaElement.title}</f:if>" data-lightbox-caption="{mediaElement.description}" class="lightbox" data-lightbox-width="{bk2k:lastImageInfo(property: 'width')}" data-lightbox-height="{bk2k:lastImageInfo(property: 'height')}" data-gallery="news-detail">
+											<f:media file="{mediaElement}" width="720" class="img-responsive" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" />
+										</a>
+									</f:else>
+								</f:if>
 								<f:if condition="{mediaElement.description}">
 									<div class="caption">
 										{mediaElement.description}
@@ -88,7 +95,7 @@
 					<li class="previous">
 						<f:if condition="{paginated.prev}">
 							<n:link newsItem="{paginated.prev}" settings="{settings}" class="browse-pages-link browse-pages-link-prev">
-								<f:if condition="{paginated.prev.media.0}">
+								<f:if condition="{paginated.prev.media.0} && {paginated.prev.media.0.originalResource.type} != 4">
 									<f:media file="{paginated.prev.media.0}" width="80" class="browse-pages-link-img" />
 								</f:if>
 								<p>{paginated.prev.title}</p>
@@ -104,7 +111,7 @@
 						<f:if condition="{paginated.next}">
 							<n:link newsItem="{paginated.next}" settings="{settings}" class="browse-pages-link browse-pages-link-next" >
 								<p>{paginated.next.title}</p>
-								<f:if condition="{paginated.next.media.0}">
+								<f:if condition="{paginated.next.media.0} && {paginated.next.media.0.originalResource.type} != 4">
 									<f:media file="{paginated.next.media.0}" width="80" class="browse-pages-link-img" />
 								</f:if>
 							</n:link>
